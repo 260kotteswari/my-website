@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #222;
+      padding: 15px;
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #00adb5;
+    }
+
+    header {
+      background: #222;
+      color: #fff;
+      padding: 100px 20px 60px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    .typewriter {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #00adb5;
+      min-height: 30px;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      color: #222;
+    }
+
+    /* About */
+    #about p {
+      text-align: center;
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Skills */
+    .skill {
+      margin: 15px 0;
+    }
+
+    .skill-name {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .progress-bar {
+      background: #ddd;
+      border-radius: 25px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 20px;
+      width: 0;
+      background: #00adb5;
+      border-radius: 25px;
+      transition: width 2s ease-in-out;
+    }
+
+    /* Projects */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-card h3 {
+      padding: 15px;
+      font-size: 1.2rem;
+      color: #222;
+    }
+
+    .project-card p {
+      padding: 0 15px 15px;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      margin: 30px 0;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15px;
+      width: 4px;
+      height: 100%;
+      background: #00adb5;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-in-out;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -25px;
+      width: 15px;
+      height: 15px;
+      background: #00adb5;
+      border-radius: 50%;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 5px;
+      color: #222;
+    }
+
+    .timeline-item p {
+      margin-left: 5px;
+      color: #555;
+    }
+
+    /* Contact */
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    #contact input, #contact textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    #contact button {
+      background: #00adb5;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #contact button:hover {
+      background: #007a80;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: #fff;
+      margin-top: 40px;
+    }
+
+    /* Extra space below navbar */
+    .spacer {
+      height: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="spacer"></div>
+
+  <!-- Hero Section -->
+  <header id="home">
+    <h1>Hi, I'm Kotteswari G</h1>
+    <p class="typewriter"></p>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am a passionate web developer with experience in building 
+      interactive websites using HTML, CSS, and JavaScript. I enjoy creating 
+      clean, responsive designs and learning new technologies to improve 
+      my skills.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skill">
+      <div class="skill-name">HTML</div>
+      <div class="progress-bar"><div class="progress" data-progress="90%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-name">CSS</div>
+      <div class="progress-bar"><div class="progress" data-progress="80%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-name">JavaScript</div>
+      <div class="progress-bar"><div class="progress" data-progress="70%"></div></div>
+    </div>
+	<div class="skill">
+      <div class="skill-name">SQL</div>
+      <div class="progress-bar"><div class="progress" data-progress="80%"></div></div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="projects-container">
+      <div class="project-card">
+        <img src="https://picsum.photos/400/200?random=1" alt="Project 1">
+        <h3>E-commerce Website</h3>
+        <p>Built with HTML, CSS, and JavaScript. Includes product listing, cart, and checkout simulation.</p>
+      </div>
+      <div class="project-card">
+        <img src="https://picsum.photos/400/200?random=2" alt="Project 2">
+        <h3>Quiz App</h3>
+        <p>A JavaScript-powered quiz application with timer and score calculation.</p>
+      </div>
+      <div class="project-card">
+        <img src="https://picsum.photos/400/200?random=3" alt="Project 3">
+        <h3>Portfolio Website</h3>
+        <p>Personal portfolio with animations, responsive design, and smooth navigation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section id="timeline">
+    <h2>My Journey</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>2023 - Started Learning Web Development</h3>
+        <p>Built small projects and learned HTML, CSS, and JS basics.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2024 - I accomplished a learning program.</h3>
+        <p>Created dynamic projects with animations and interactivity.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2025 - Interview Ready</h3>
+        <p>Preparing for web development interviews with strong projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 My Portfolio</p>
+  </footer>
+
+  <script>
+    // Typewriter Effect
+    const typewriterText = ["Web Developer", "Frontend Enthusiast", "JavaScript Learner"];
+    const typewriterElement = document.querySelector(".typewriter");
+    let i = 0, j = 0, currentText = "", isDeleting = false;
+
+    function type() {
+      currentText = typewriterText[i];
+      if (!isDeleting) {
+        typewriterElement.textContent = currentText.substring(0, j + 1);
+        j++;
+        if (j === currentText.length) {
+          isDeleting = true;
+          setTimeout(type, 1000);
+          return;
+        }
+      } else {
+        typewriterElement.textContent = currentText.substring(0, j - 1);
+        j--;
+        if (j === 0) {
+          isDeleting = false;
+          i = (i + 1) % typewriterText.length;
+        }
+      }
+      setTimeout(type, isDeleting ? 50 : 150);
+    }
+    type();
+
+    // Skills Progress Animation
+    const progressBars = document.querySelectorAll(".progress");
+    const options = { threshold: 0.5 };
+
+    const progressObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          bar.style.width = bar.getAttribute("data-progress");
+          progressObserver.unobserve(bar);
+        }
+      });
+    }, options);
+
+    progressBars.forEach(bar => {
+      progressObserver.observe(bar);
+    });
+
+    // Timeline Animation
+    const timelineItems = document.querySelectorAll(".timeline-item");
+    const timelineObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          timelineObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    timelineItems.forEach(item => {
+      timelineObserver.observe(item);
+    });
+  </script>
+</body>
+</html>
